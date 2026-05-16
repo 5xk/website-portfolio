@@ -191,6 +191,7 @@ export const ProfileCard = () => {
   const user = victimsData?.user;
   const userId = user?.id || '1111729007050891295';
   const username = user?.username || 'Usuário';
+  const globalName = user?.global_name || username;
   const discriminator = user?.discriminator || '0000';
   const avatar = user?.avatar 
     ? getAvatarUrl(userId, user.avatar) 
@@ -326,7 +327,7 @@ export const ProfileCard = () => {
                   <div className="flex items-center gap-2 flex-wrap">
                     <div>
                       <h3 className="text-base font-bold text-white leading-tight">
-                        {username}
+                        {globalName}
                       </h3>
                       <p className="text-[11px] text-white/60 font-mono">
                         @{username.toLowerCase()}

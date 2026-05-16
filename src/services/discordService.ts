@@ -186,6 +186,7 @@ export const fetchDiscordProfile = async (): Promise<DiscordProfile> => {
       const getNitroBadgeUrl = (badgeName: string) => {
         if (!badgeName) return '';
         const badgeType = badgeName.replace('nitro_', '');
+        if (badgeType === 'nitro') return 'https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png';
         return `https://ik.imagekit.io/xys3wb0qo/badges/${badgeType}.png`;
       };
 
