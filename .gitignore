@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Lock files de outros gerenciadores
+bun.lockb
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbars */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 263 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 80% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 280 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 263 70% 60%;
+
+    --radius: 0.75rem;
+
+    --purple-glow: 263 70% 60%;
+    --blue-glow: 200 80% 50%;
+    --green-accent: 142 70% 45%;
+    --pink-accent: 330 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  #root {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .text-gradient-purple {
+    @apply bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 20px hsl(var(--purple-glow) / 0.3),
+                0 0 40px hsl(var(--purple-glow) / 0.2);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px hsl(var(--blue-glow) / 0.3),
+                0 0 40px hsl(var(--blue-glow) / 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+/* FameBlack Dashboard Styles */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+/* ── Cinematic page transition ── */
+@keyframes page-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-page-in {
+  animation: page-in 0.45s ease-out forwards;
+}
+
+/* Sweep line that crosses the screen on navigation */
+@keyframes cinematic-sweep {
+  from { left: -220px; }
+  to   { left: calc(100vw + 220px); }
+}
+.cinematic-sweep {
+  position: absolute;
+  top: 0;
+  left: -220px;
+  width: 220px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  animation: cinematic-sweep 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Subtle flash on navigation */
+@keyframes cinematic-flash {
+  0%   { opacity: 0; }
+  8%   { opacity: 0.06; }
+  18%  { opacity: 0.09; }
+  100% { opacity: 0; }
+}
+.cinematic-flash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,1);
+  animation: cinematic-flash 0.55s ease-out forwards;
+}
+
+/* Nav item click glow */
+@keyframes nav-item-flash {
+  0%   { box-shadow: 0 0 0px 0px rgba(255,255,255,0); }
+  25%  { box-shadow: 0 0 18px 6px rgba(255,255,255,0.35); }
+  100% { box-shadow: 0 0 0px 0px rgba(255,255,255,0); }
+}
+.nav-item-flash {
+  animation: nav-item-flash 0.65s ease-out forwards;
+}
+
+/* Staggered card entrance */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-card-enter {
+  opacity: 0;
+  animation: card-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Cinematic title reveal */
+@keyframes title-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+    letter-spacing: 0.25em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
+}
+.animate-title-reveal {
+  animation: title-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
